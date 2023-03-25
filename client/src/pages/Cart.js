@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { SHOP_ROUTE } from "../utils/consts";
 
 const Cart = observer(() => {
-  const { order, user } = useContext(Context);
+  const { order, user, info } = useContext(Context);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -281,7 +281,7 @@ const Cart = observer(() => {
                       value="Переказ грошей на карту"
                       className="ms-4 me-1"
                     />
-                    Переказ грошей на карту(Приватбанк: , Монобанк: )
+                    Переказ грошей на карту ( {info.masterCard} )
                   </label>
                 </div>
               </div>

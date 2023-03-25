@@ -12,6 +12,7 @@ import {
 } from "../../http/deviceAPI";
 import { FaTrash } from "react-icons/fa";
 import ModalInfo from "./ModalInfo";
+import { statusArr, badgeArr, countryArr, tasteArr } from "../../utils/consts";
 
 const CreateDevice = observer(({ show, onHide }) => {
   const { device } = useContext(Context);
@@ -21,65 +22,14 @@ const CreateDevice = observer(({ show, onHide }) => {
   const [info, setInfo] = useState([
     { title: "Опис товару", description: "", number: "0" },
     { title: "Країна виробник", description: "Україна", number: "1" },
-    { title: "Країна реєстрації бренду", description: "Україна", number: "2" },
+    { title: "Вирощувач сировини", description: "Україна", number: "2" },
     { title: "Вага", description: "0 гр.", number: "3" },
     { title: "Кiлькiсть у пачцi", description: "10 шт.", number: "4" },
-    { title: "Особливості", description: "", number: "5" },
+    { title: "Склад", description: "", number: "5" },
     { title: "Термін зберігання", description: "12 мiсяцiв", number: "6" },
-    { title: "Смак", description: "Солодке Солоне Кисло-солодке", number: "7" },
+    { title: "Смак", description: "Солодке", number: "7" },
   ]);
-
   const [showInfo, setShowInfo] = useState(false);
-  const statusArr = [
-    "В наявності",
-    "Закінчується",
-    "На складі",
-    "Розпродаж",
-    "Розпродаж залишку",
-    "Ціна знижена",
-    "Немає в наявності",
-  ];
-  const badgeArr = [
-    "-5%",
-    "-10%",
-    "-15%",
-    "-20%",
-    "-25%",
-    "-50%",
-    "ТОП",
-    "ТОП ПРОДАЖIВ",
-    "УКРАЇНА",
-    "НОВИНКА",
-  ];
-  const countryArr = [
-    "Україна",
-    "Європа",
-    "Польща",
-    "Німеччина",
-    "Італія",
-    "Велика Британія",
-    "Франція",
-    "Іспанія",
-    "Чехія",
-    "Словаччина",
-    "Нідерланди",
-    "Швейцарія",
-    "Бельгія",
-    "Туреччина*",
-    "Молдова",
-    "Данія",
-    "Естонія",
-    "Латвія",
-    "Литва",
-    "Грузія",
-    "Угорщина",
-    "Австрія",
-    "Болгарія",
-    "Греція",
-    "Румунія",
-    "Норвегія",
-    "Китай",
-  ];
   const [statusInput, setStatusInput] = useState(statusArr[0]);
   const [statusDropDown, setStatusDropDown] = useState("");
   const [badgeInput, setBadgeInput] = useState("");
@@ -327,6 +277,25 @@ const CreateDevice = observer(({ show, onHide }) => {
                             key={country}
                           >
                             {country}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )}
+                  {i.number === "7" && (
+                    <Dropdown className="mx-1 ">
+                      <Dropdown.Toggle>
+                        {i.description || "Смак"}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {tasteArr.map((taste) => (
+                          <Dropdown.Item
+                            onClick={() => {
+                              changeInfo("description", taste, i.number);
+                            }}
+                            key={taste}
+                          >
+                            {taste}
                           </Dropdown.Item>
                         ))}
                       </Dropdown.Menu>

@@ -20,7 +20,7 @@ export const createArticle = async (formData) => {
 };
 
 export const createSection = async (formData) => {
-  const { data } = await $authHost.post("api/section", formData); 
+  const { data } = await $authHost.post("api/section", formData);
 };
 
 export const fetchSlideShow = async () => {
@@ -170,6 +170,13 @@ export const createComment = async (name, comment, advantage, flaw, id) => {
 export const delComment = async (id) => {
   const { data } = await $authHost.post("api/device/delcomment", {
     id,
+  });
+  return data;
+};
+
+export const fetchComments = async (commentsDate) => {
+  const { data } = await $authHost.post("api/device/comments/all", {
+    commentsDate,
   });
   return data;
 };

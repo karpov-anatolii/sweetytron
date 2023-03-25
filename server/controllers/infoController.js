@@ -8,24 +8,32 @@ const fs = require("fs/promises");
 class infoController {
   async create(req, res, next) {
     try {
-      const { siteName } = req.body;
+      const { siteName, masterCard, masterPhone } = req.body;
       let logoRow;
-      const siteNameRow = await Info.findOne({
-        where: { key: "siteName" },
-      });
-      if (siteNameRow) {
-        await Info.update(
-          {
-            value: siteName,
-          },
-          { where: { key: "siteName" } }
-        );
-      } else {
-        await Info.create({
-          key: "siteName",
-          value: siteName,
+
+      const handlerInfo = async (key, value) => {
+        await Info.findOne({
+          where: { key },
+        }).then((row) => {
+          if (row) {
+            Info.update(
+              {
+                value,
+              },
+              { where: { key } }
+            );
+          } else {
+            Info.create({
+              key,
+              value,
+            });
+          }
         });
-      }
+      };
+
+      handlerInfo("siteName", siteName);
+      handlerInfo("masterCard", masterCard);
+      handlerInfo("masterPhone", masterPhone);
 
       if (req.files) {
         const { logo } = req.files;

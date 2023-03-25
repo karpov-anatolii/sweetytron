@@ -96,7 +96,6 @@ const DevicePage = observer((props) => {
         </Breadcrumb.Item>
 
         <Breadcrumb.Item
-          className="fw-bold "
           linkAs={Link}
           linkProps={{
             to: `/?category=${device.selectedCategory.id}&section=all`,
@@ -105,7 +104,6 @@ const DevicePage = observer((props) => {
           {device.selectedCategory.name}
         </Breadcrumb.Item>
         <Breadcrumb.Item
-          className="fw-bold "
           linkAs={Link}
           linkProps={{
             to: `/?category=${device.selectedCategory.id}&section=${device.selectedSection.id}`,
@@ -218,7 +216,7 @@ const DevicePage = observer((props) => {
               </Card.Header>
               <Card.Body className="w-100">
                 {deviceCurrent.comments.length == 0 ? (
-                  <div>
+                  <div className="mb-3">
                     Вiдгукiв поки що нема про цей товар, але Ви можете залишити
                     першим.
                   </div>

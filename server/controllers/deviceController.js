@@ -326,6 +326,32 @@ class DeviceController {
     );
     return res.json(commentDb);
   }
+
+  async commentsAll(req, res) {
+    const { commentsDate } = req.body;
+    let year = parseInt(commentsDate.split("T")[0].split("-")[0]);
+    let month = parseInt(commentsDate.split("T")[0].split("-")[1]);
+    let day = parseInt(commentsDate.split("T")[0].split("-")[2]);
+
+    console.log("=======commentsDate====", year, month, day);
+    let endDate = new Date(year, month - 1, day + 1);
+    let startDate = new Date(year, month - 1, day);
+    console.log(startDate, endDate);
+    try {
+      const commentDb = await Comment.findAll({
+        where: {
+          createdAt: {
+            [Op.between]: [startDate, endDate],
+          },
+        },
+        include: [{ model: Device, as: "device" }],
+      });
+      if (commentDb.length == 0) console.log("NOOOOOOOOO!!!!!!");
+      return res.json(commentDb);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 module.exports = new DeviceController();

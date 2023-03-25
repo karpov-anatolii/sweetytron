@@ -27,7 +27,13 @@ const Shop = observer(() => {
   const [topItems, setTopItems] = useState([]);
   const [hotItems, setHotItems] = useState([]);
   const [openSlideShow, setOpenSlideShow] = useState(true);
-  const divider = useRef(null);
+  const divider = useRef();
+
+  const deviderTop = () => {
+    setTimeout(() => {
+      divider.current.scrollIntoView({ behavior: "smooth" });
+    }, 500);
+  };
 
   useEffect(() => {
     let sessionOrder = sessionStorage.getItem("order");
@@ -82,14 +88,14 @@ const Shop = observer(() => {
 
   useEffect(() => {
     device.selectedCategory.id &&
-      device.selectedSection.id &&
+      (device.selectedSection.id || device.selectedSection === "all") &&
       fetchDevices(
         device.selectedCategory.id,
         device.selectedSection.id,
         device.page,
         device.limit
       ).then((data) => {
-        device.setTotalCount(data.count); 
+        device.setTotalCount(data.count);
         device.setDevices(data.rows);
       });
   }, [device.page, device.selectedCategory, device.selectedSection]);
@@ -131,19 +137,17 @@ const Shop = observer(() => {
         <Row className="mt-2">
           {device.selectedCategory.id ? (
             <Col>
-              <div
-                onClick={() => {
-                  setTimeout(() => {
-                    window.scrollTo(0, divider.current.offsetTop);
-                  }, 500);
-                }}
-              >
+              <div onClick={deviderTop}>
                 <SectionBar />
               </div>
 
               <Row className="divider" ref={divider}></Row>
+
               <DeviceList />
-              <Pages />
+
+              <div onClick={deviderTop}>
+                <Pages />
+              </div>
             </Col>
           ) : (
             <Col>

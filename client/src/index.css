@@ -137,6 +137,8 @@
 
 .breadcrumb a {
   color: #ffc107 !important;
+  text-decoration: none;
+  font-size: 1.1em;
 }
 
 .navbar-toggler-icon {
@@ -193,6 +195,25 @@
 .slideshow-text {
   font-size: 0.9em;
   font-weight: normal;
+}
+
+.admin-comments {
+  max-height: 500px;
+  overflow: auto;
+  border: 1px solid #17181a;
+  background-color: #ebebe6;
+}
+.admin-comments-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.admin-info {
+  border: 1px solid #17181a;
+  border-radius: 5px;
 }
 
 @media (max-width: 450px) {
@@ -297,4 +318,17 @@
   .device-property div {
     font-size: 5vw;
   }
+}
+
+.active > .page-link {
+  background-color: rgb(243, 191, 21);
+  border-color: rgb(216, 168, 12);
+}
+
+.page-item a {
+  color: #e6ad04;
+}
+
+.page-item a:hover {
+  color: #e6ad04;
 }

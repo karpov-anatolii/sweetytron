@@ -25,7 +25,7 @@ const Footer = observer(() => {
           <div className="logo-footer">
             <p>{info.siteName}</p>
           </div>
-          <Nav className="mb-1 mt-3  px-2  footer-content d-flex justify-content-center ">
+          <Nav className="my-1 mt-3  px-4 footer-content d-flex justify-content-center ">
             {info.articles.map(
               (el) =>
                 el.show_footer && (
@@ -39,7 +39,10 @@ const Footer = observer(() => {
                 )
             )}
           </Nav>
-          <div className="mb-4 pb-3 mt-1 pt-5 px-4 footer-content text-secondary text-center">
+          <div className="fs-5 my-2 footer-content text-secondary text-center">
+            {info.masterPhone}
+          </div>
+          <div className="mb-5  my-3  px-0 footer-content text-secondary text-center">
             &copy;{new Date().getFullYear()} {info.siteName} Всі права захищені.{" "}
           </div>
         </Container>

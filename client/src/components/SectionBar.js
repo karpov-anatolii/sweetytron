@@ -51,6 +51,7 @@ const SectionBar = observer(() => {
                 1,
                 device.limit
               ).then((data) => {
+                console.log(data);
                 device.setTotalCount(data.count); //получаем от сервера общее кол-во товаров в выделенной категории
                 device.setDevices(data.rows);
                 device.setSelectedSection("all");

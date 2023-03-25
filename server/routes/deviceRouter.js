@@ -13,6 +13,7 @@ router.get("/:id", deviceController.getOne);
 router.post("/edit", checkRole("ADMIN"), deviceController.editOne);
 router.post("/delete", checkRole("ADMIN"), deviceController.deleteOne);
 router.post("/comment", deviceController.comment);
+router.post("/comments/all", deviceController.commentsAll);
 router.post("/delcomment", checkRole("ADMIN"), deviceController.delComment);
 
 module.exports = router;

@@ -6,7 +6,14 @@ export default class InfoStore {
     this._siteName = "";
     this._logo = "";
     this._articles = [];
+    this._masterCard = "";
+    this._masterPhone = "";
+    this._commentDay = 0;
     makeAutoObservable(this);
+  }
+
+  setCommentDay(day) {
+    this._commentDay = day;
   }
 
   setSiteName(name) {
@@ -21,6 +28,14 @@ export default class InfoStore {
     this._articles = articles;
   }
 
+  setMasterCard(num) {
+    this._masterCard = num;
+  }
+
+  setMasterPhone(num) {
+    this._masterPhone = num;
+  }
+
   get siteName() {
     return this._siteName;
   }
@@ -31,5 +46,17 @@ export default class InfoStore {
 
   get articles() {
     return this._articles;
+  }
+
+  get masterCard() {
+    return this._masterCard;
+  }
+
+  get masterPhone() {
+    return this._masterPhone;
+  }
+
+  get commentDay() {
+    return this._commentDay;
   }
 }
